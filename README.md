@@ -45,7 +45,7 @@ Traditional group expense tracking is tedious and prone to friction. Friends oft
 KharchaSaathi removes this friction using **Agentic AI LangGraph Reasoning**. Any member of the group simply messages the WhatsApp bot:
 
 ```text
-Rahul paid 1200 for movie tickets, split equally between Rahul, Alice, and Bob
+Rahul paid 1200 for movie tickets, split equally between Rahul, Anjali, and Tina
 
 Maine 500 kharch kiya dinner pe, add my share and Rahul's share
 

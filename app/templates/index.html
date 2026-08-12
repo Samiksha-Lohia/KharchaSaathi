@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KharchaSaathi 🪙 - Agentic WhatsApp Expense Settler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            theme: 'neutral',
+            startOnLoad: true,
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            }
+        });
+    </script>
+    <style>
+        :root {
+            --bg-color: #f3f2ee;
+            --card-bg: #ffffff;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --primary: #10b981;
+            --primary-hover: #059669;
+            --secondary: #3b82f6;
+            --secondary-hover: #2563eb;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            padding: 3rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 2.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Header styles */
+        .header-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+        }
+
+        .title-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo {
+            font-size: 2.25rem;
+        }
+
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: #1a202c;
+        }
+
+        .description {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .badge-status {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            background-color: #3182ce;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2b6cb0;
+        }
+
+        .github-link {
+            color: var(--primary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+
+        .github-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Section styles */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #1a202c;
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-main);
+            background-color: #f7fafc;
+        }
+
+        td.tag-cell {
+            text-align: right;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag-get {
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+        }
+
+        .tag-post {
+            background-color: #f0fff4;
+            color: #2f855a;
+        }
+
+        .tag-info {
+            background-color: #edf2f7;
+            color: #4a5568;
+        }
+
+        .mermaid {
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tech-stack-list {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 1. Header Card -->
+        <div class="card header-block">
+            <div class="title-row">
+                <span class="logo">🪙</span>
+                <h1 class="title">KharchaSaathi</h1>
+            </div>
+            <p class="description">
+                Agentic WhatsApp Expense-Settler for Groups. Manage group expenses, track splits, OCR bills, and voice notes directly via WhatsApp.
+            </p>
+            <div class="badge-row">
+                <div class="badge badge-status">
+                    <span class="dot"></span> Service Online
+                </div>
+                <a href="/docs" class="badge btn">Open Interactive API Docs (Swagger)</a>
+                <a href="/redoc" class="badge btn btn-secondary">Read Docs (Redoc)</a>
+            </div>
+            <a href="https://github.com/priyanshuraj20/VyaparAi" class="github-link" target="_blank">View GitHub Repository</a>
+        </div>
+
+        <!-- 2. System Architecture & Flow Card -->
+        <div class="card">
+            <h2 class="section-title">System Architecture & Flow</h2>
+            <div class="mermaid">
+                flowchart TD
+                    A[User/Group] --> B[WhatsApp Webhook]
+                    B --> C[FastAPI Main App]
+                    C --> D[Redis Deduplicator]
+                    D --> E[LangGraph Agent Pipeline]
+                    E --> F[Refiner Agent]
+                    E --> G[Planner Agent]
+                    E --> H[Insight Agent]
+                    F & G & H --> I[Deterministic Debt Optimizer]
+                    I --> J[(PostgreSQL)]
+                    C --> K[Celery Beat & Worker]
+                    K --> J
+            </div>
+        </div>
+
+        <!-- 3. API Endpoints -->
+        <div class="card">
+            <h2 class="section-title">API Endpoints for Testing</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Endpoint</th>
+                        <th style="text-align: right;">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="tag tag-get">GET</span> /health</td>
+                        <td style="text-align: right; color: var(--text-muted);">System Health</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-post">POST</span> /webhook</td>
+                        <td style="text-align: right; color: var(--text-muted);">WhatsApp Webhook Handler</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-get">GET</span> /docs</td>
+                        <td style="text-align: right; color: var(--text-muted);">API Documentation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. Example WhatsApp Messages -->
+        <div class="card">
+            <h2 class="section-title">Example WhatsApp Messages</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>"Rahul paid 1200 for movie tickets, split equally between Rahul, Anjali and Tina"</td>
+                        <td class="tag-cell"><span class="tag tag-info">Credit Entry</span></td>
+                    </tr>
+                    <tr>
+                        <td>"Maine 500 kharch kiya dinner pe, add my share and Rahul's share"</td>
+                        <td class="tag-cell"><span class="tag tag-info">Payment/Debit</span></td>
+                    </tr>
+                    <tr>
+                        <td>"Show current group balances"</td>
+                        <td class="tag-cell"><span class="tag tag-info">Balance Query</span></td>
+                    </tr>
+                    <tr>
+                        <td>"Optimize debts and show settlement report"</td>
+                        <td class="tag-cell"><span class="tag tag-info">Optimization</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. Technology Stack -->
+        <div class="card">
+            <h2 class="section-title">Technology Stack</h2>
+            <p class="tech-stack-list">
+                Python 3.12 • FastAPI • PostgreSQL • SQLAlchemy • Alembic • Redis • Celery • Celery Beat • LangGraph • OpenRouter (DeepSeek/GPT-4o-mini) • Groq (Llama 3.1) • Groq Whisper STT • Meta WhatsApp Cloud API • Docker
+            </p>
+        </div>
+    </div>
+</body>
+</html>

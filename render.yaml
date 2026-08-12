@@ -1,0 +1,80 @@
+services:
+  # 1. FastAPI Web Application Service
+  - type: web
+    name: kharchasaathi-web
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: kharchasaathi-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: kharchasaathi-redis
+          property: connectionString
+      - key: META_WHATSAPP_TOKEN
+        sync: false
+      - key: META_PHONE_NUMBER_ID
+        sync: false
+      - key: WEBHOOK_VERIFY_TOKEN
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: WHISPER_API_KEY
+        sync: false
+
+  # 2. Celery Worker Service
+  - type: worker
+    name: kharchasaathi-worker
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: celery -A scheduler.celery_app worker --loglevel=info
+    envVars:
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: kharchasaathi-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: kharchasaathi-redis
+          property: connectionString
+      - key: GROQ_API_KEY
+        sync: false
+
+  # 3. Celery Beat Scheduler Service
+  - type: worker
+    name: kharchasaathi-beat
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: celery -A scheduler.celery_app beat --loglevel=info
+    envVars:
+      - key: POSTGRES_URL
+        fromDatabase:
+          name: kharchasaathi-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: kharchasaathi-redis
+          property: connectionString
+
+# Databases & Cache Dependencies
+databases:
+  - name: kharchasaathi-db
+    plan: free
+
+# Redis Cache Service
+services:
+  - type: redis
+    name: kharchasaathi-redis
+    plan: free
+    ipAllowList: [] # Access restricted only to internal services

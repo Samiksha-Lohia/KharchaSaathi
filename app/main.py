@@ -49,6 +49,6 @@ async def landing_page():
 async def get_project_plan():
     pdf_path = BASE_DIR.parent / "KharchaSaathi_Project_Plan.pdf"
     if pdf_path.exists():
-        return FileResponse(pdf_path, media_type="application/pdf", filename="KharchaSaathi_Project_Plan.pdf")
+        return FileResponse(pdf_path, media_type="application/pdf", content_disposition_type="inline")
     return JSONResponse(status_code=404, content={"detail": "Project plan PDF not found"})
 

@@ -156,6 +156,18 @@ W-->>U: Formatted Summary Message
 
 ---
 
+# 📸 Screenshots & Live Deployment
+
+## 1. WhatsApp Conversation Assistant
+![WhatsApp Conversation](docs/images/01-whatsapp-chat.png)
+
+---
+
+## 2. Live Render Cloud Production Deployment
+![Render Production Live Deployment](docs/images/02-render-live.png)
+
+---
+
 # ⚙ Tech Stack
 
 - **Backend**: Python 3.12, FastAPI, SQLAlchemy, Alembic, Celery

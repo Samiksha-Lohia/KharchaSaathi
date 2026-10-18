@@ -106,37 +106,6 @@ I --> J[(PostgreSQL)]
 ```
 
 ---
-
-# 🧩 Agentic Request Lifecycle
-
-```mermaid
-sequenceDiagram
-
-participant U as User
-participant W as WhatsApp
-participant API as FastAPI
-participant P as LangGraph Agent
-participant S as Service Layer
-participant DB as PostgreSQL
-participant R as Redis
-participant F as Response Refiner
-
-U->>W: Send Message / Bill Photo
-W->>API: Webhook Payload
-API->>R: Deduplicate Message ID
-API->>P: Run Agent Pipeline
-P->>S: Process Receipt
-P->>S: Trigger Expense & Split Tool
-S->>DB: Write Expense / Recalculate derived Debts
-DB-->>S: Success
-S->>F: Structured Output
-F-->>API: Friendly Response
-API-->>W: WhatsApp Cloud API Send
-W-->>U: Formatted Summary Message
-```
-
----
-
 # 📸 Screenshots & Live Deployment
 
 ## 1. WhatsApp Conversation Assistant

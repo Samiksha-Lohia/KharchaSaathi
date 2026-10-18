@@ -14,7 +14,7 @@ Manage and settle your group expenses directly from WhatsApp using Agentic AI Pl
 ![Agentic AI](https://img.shields.io/badge/Agentic_AI-LangGraph_Planner-purple?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-green?style=for-the-badge&logo=fastapi)
-![Redis](https://img.shields.io/badge/Redis-Cache%20%26%20Lock-red?style=for-the-badge&logo=redis)
+![Redis](https://img.shields.io/badge/Redis-Cache%20-red?style=for-the-badge&logo=redis)
 ![WhatsApp](https://img.shields.io/badge/WhatsApp-Business_API-25D366?style=for-the-badge&logo=whatsapp)
 
 </p>

@@ -103,7 +103,6 @@ E --> G[Planner Agent]
 E --> H[Insight Agent]
 F & G & H --> I[Deterministic Debt Optimizer]
 I --> J[(PostgreSQL)]
-K --> J
 ```
 
 ---

@@ -1,4 +1,5 @@
 import os
+import json
 import logging
 import httpx
 from app.services.whisper_service import download_whatsapp_media
@@ -84,7 +85,8 @@ def process_bill_image(media_id: str) -> dict:
     try:
         response = httpx.post(url, headers=headers, json=payload, timeout=20.0)
         response.raise_for_status()
-        result = response.json().choices[0].message.content
+        response_data = response.json()
+        result = response_data["choices"][0]["message"]["content"]
         data = json.loads(result)
         
         # 4. Perform sum validation

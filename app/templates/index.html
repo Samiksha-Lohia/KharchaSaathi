@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KharchaSaathi 🪙 - Agentic WhatsApp Expense Settler</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
     <script>
         mermaid.initialize({
@@ -139,9 +141,20 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
         }
 
         .btn {
@@ -194,7 +207,8 @@
             margin-top: 0.5rem;
         }
 
-        th, td {
+        th,
+        td {
             padding: 0.75rem 1rem;
             border-bottom: 1px solid var(--border-color);
             font-size: 0.9rem;
@@ -247,6 +261,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- 1. Header Card -->
@@ -256,7 +271,8 @@
                 <h1 class="title">KharchaSaathi</h1>
             </div>
             <p class="description">
-                Agentic WhatsApp Expense-Settler for Groups. Manage group expenses, track splits, OCR bills, and voice notes directly via WhatsApp.
+                Agentic WhatsApp Expense-Settler for Groups. Manage group expenses, track splits, OCR bills, and voice
+                notes directly via WhatsApp.
             </p>
             <div class="badge-row">
                 <div class="badge badge-status">
@@ -265,7 +281,8 @@
                 <a href="/docs" class="badge btn">Open Interactive API Docs (Swagger)</a>
                 <a href="/project-plan" target="_blank" class="badge btn btn-secondary">Read Project Plan</a>
             </div>
-            <a href="https://github.com/Samiksha-Lohia/KharchaSaathi" class="github-link" target="_blank">View GitHub Repository</a>
+            <a href="https://github.com/Samiksha-Lohia/KharchaSaathi" class="github-link" target="_blank">View GitHub
+                Repository</a>
         </div>
 
         <!-- 2. System Architecture & Flow Card -->
@@ -273,17 +290,17 @@
             <h2 class="section-title">System Architecture & Flow</h2>
             <div class="mermaid">
                 flowchart TD
-                    A[User/Group] --> B[WhatsApp Webhook]
-                    B --> C[FastAPI Main App]
-                    C --> D[Redis Deduplicator]
-                    D --> E[LangGraph Agent Pipeline]
-                    E --> F[Refiner Agent]
-                    E --> G[Planner Agent]
-                    E --> H[Insight Agent]
-                    F & G & H --> I[Deterministic Debt Optimizer]
-                    I --> J[(PostgreSQL)]
-                    C --> K[Celery Beat & Worker]
-                    K --> J
+                A[User/Group] --> B[WhatsApp Webhook]
+                B --> C[FastAPI Main App]
+                C --> D[Redis Deduplicator]
+                D --> E[Smart AI Agent Pipeline]
+                E --> F[Refiner Agent]
+                E --> G[Planner Agent]
+                E --> H[Insight Agent]
+                F & G & H --> I[Deterministic Debt Optimizer]
+                I --> J[(PostgreSQL)]
+                C --> K[Celery Beat & Worker]
+                K --> J
             </div>
         </div>
 
@@ -343,9 +360,12 @@
         <div class="card">
             <h2 class="section-title">Technology Stack</h2>
             <p class="tech-stack-list">
-                Python 3.12 • FastAPI • PostgreSQL • SQLAlchemy • Alembic • Redis • Celery • Celery Beat • LangGraph • OpenRouter (DeepSeek/GPT-4o-mini) • Groq (Llama 3.1) • Groq Whisper STT • Meta WhatsApp Cloud API • Docker
+                Python 3.12 • FastAPI • PostgreSQL • SQLAlchemy • Alembic • Redis • Celery • Celery Beat • Smart AI
+                Agents • OpenRouter (DeepSeek/GPT-4o-mini) • Groq (Llama 3.1) • Groq Whisper STT • Meta WhatsApp Cloud
+                API • Docker
             </p>
         </div>
     </div>
 </body>
+
 </html>

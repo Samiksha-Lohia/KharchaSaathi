@@ -7,7 +7,7 @@ KharchaSaathi is an agentic expense-settling assistant for WhatsApp groups. It p
 - **API Framework**: FastAPI (Uvicorn as ASGI server)
 - **Database**: PostgreSQL (SQLAlchemy ORM, Alembic migrations)
 - **Caching & Message Queue**: Redis (Deduplication, locking, and celery backend)
-- **Agent Pipeline**: LangGraph
+- **Agent Pipeline**: Smart AI NLP Agents (Groq LLaMA 3.1 & Redis)
 - **Task Scheduler**: Celery + Celery Beat
 - **External Integration**: Meta WhatsApp Cloud API
 - **Language Models**: Groq / OpenRouter LLMs (Llama 3, etc.)

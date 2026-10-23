@@ -152,3 +152,7 @@ cython_debug/
 .vscode/
 *.swp
 *.swo
+
+# Node / Tunnel / Executables
+node_modules/
+cloudflared.exe

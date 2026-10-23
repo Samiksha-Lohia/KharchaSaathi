@@ -11,7 +11,7 @@ Manage and settle your group expenses directly from WhatsApp using Agentic AI Pl
 <p align="center">
 
 [![Live Demo](https://img.shields.io/badge/Render-Live_Production-brightgreen?style=for-the-badge&logo=render)](https://kharchasaathi.onrender.com)
-![Agentic AI](https://img.shields.io/badge/Agentic_AI-LangGraph_Planner-purple?style=for-the-badge)
+![Agentic AI](https://img.shields.io/badge/Agentic_AI-Smart_AI_Agents-purple?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=for-the-badge&logo=python)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Production-green?style=for-the-badge&logo=fastapi)
 ![Redis](https://img.shields.io/badge/Redis-Cache%20-red?style=for-the-badge&logo=redis)
@@ -36,7 +36,9 @@ KharchaSaathi turns WhatsApp into an **AI Expense-Settling Assistant** capable o
 
 Managing shared expenses shouldn't mean endless calculations, forgotten bills, or confusion over who owes whom.
 
-KharchaSaathi makes group expense tracking easier through WhatsApp. Members can describe expenses in everyday language, check group balances, and get optimized settlement suggestions without manually calculating every split.
+Traditional group expense tracking is tedious and prone to friction. Friends often forget to enter bills or get confused by complex split calculations.
+
+KharchaSaathi removes this friction using **Smart AI Agent Workflows**. Any member of the group simply messages the WhatsApp bot:
 
 ```text
 Rahul paid 1200 for movie tickets, split equally between Rahul, Anjali, and Tina
@@ -56,8 +58,12 @@ KharchaSaathi interprets expense messages, identifies participants and split det
 - Deciphers conversational Hindi, English, and Hinglish split commands seamlessly.
 - Handles default splits, equal division, or specific weights per participant.
 
-## 🤖 LangGraph-Powered Agent Pipeline
-- Utilizes structured LLM planners to reason through multi-step commands.
+## 📒 Derived Debt Cache & Event Hooking
+- Maintains a dedicated, derived `DEBTS` table that automatically updates after every expense write.
+- Prevents database state drifts through robust event-driven triggers.
+
+## 🤖 Smart AI Agent Pipeline
+- Utilizes structured LLM agents to reason through multi-step commands.
 - Features custom classification, disambiguation, and user refinement steps.
 
 ## 📸 Multimodal OCR Receipt Scanning
@@ -78,7 +84,7 @@ flowchart LR
 A[Group Member] --> B[WhatsApp]
 B --> C[Meta Cloud API]
 C --> D[FastAPI Backend]
-D --> E[LangGraph Agentic Pipeline]
+D --> E[Smart AI Agent Pipeline]
 E --> F[Business Services]
 F --> G[(PostgreSQL)]
 F --> H[(Redis Cache & Lock)]
@@ -97,12 +103,41 @@ flowchart TD
 A[User/Group] --> B[WhatsApp Webhook]
 B --> C[FastAPI Main App]
 C --> D[Redis Deduplicator & State Manager]
-D --> E[LangGraph Agent Pipeline]
+D --> E[Smart AI Agent Pipeline]
 E --> F[Refiner Agent]
 E --> G[Planner Agent]
 E --> H[Insight Agent]
 F & G & H --> I[Deterministic Debt Optimizer]
 I --> J[(PostgreSQL)]
+```
+
+---
+# 🧩 Agentic Request Lifecycle
+
+```mermaid
+sequenceDiagram
+
+participant U as User
+participant W as WhatsApp
+participant API as FastAPI
+participant P as Smart AI Agent
+participant S as Service Layer
+participant DB as PostgreSQL
+participant R as Redis
+participant F as Response Refiner
+
+U->>W: Send Message / Voice Note / Bill Photo
+W->>API: Webhook Payload
+API->>R: Deduplicate Message ID
+API->>P: Run Agent Pipeline
+P->>S: Process Receipt / Transcribe Audio (Whisper)
+P->>S: Trigger Expense & Split Tool
+S->>DB: Write Expense / Recalculate derived Debts
+DB-->>S: Success
+S->>F: Structured Output
+F-->>API: Friendly Response
+API-->>W: WhatsApp Cloud API Send
+W-->>U: Formatted Summary Message
 ```
 
 ---
@@ -120,9 +155,10 @@ I --> J[(PostgreSQL)]
 
 # ⚙ Tech Stack
 
-- **Backend**: Python, FastAPI, SQLAlchemy
-- **AI Providers**: LangGraph via OpenRouter/Groq, Vision LLMs (Receipt Processing)
-- **Database & Cache**: PostgreSQL, Redis
+- **Backend**: Python 3.12, FastAPI, SQLAlchemy, Alembic, Celery
+- **AI Providers**: Groq LLaMA 3.1 & Vision LLMs (NLP & Receipt Processing), Groq Whisper (Voice to Text)
+- **Database & Cache**: PostgreSQL 16 (Permanent State), Redis (Deduplication, Lock, Queue)
+- **Deployment**: Docker, Docker Compose, Render Cloud Platform
 
 ---
 
@@ -131,7 +167,7 @@ I --> J[(PostgreSQL)]
 ```text
 KharchaSaathi
 ├── app
-│   ├── agents          # LangGraph agents (Refiner, Planner, Insights)
+│   ├── agents          # Smart AI Agents (Refiner, NLP Parser, Proactive Insights)
 │   ├── algorithms      # Pure deterministic debt optimizer math
 │   ├── api             # FastAPI Webhook & REST Endpoints
 │   ├── core            # Settings, Logging & Database Config

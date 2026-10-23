@@ -155,10 +155,9 @@ W-->>U: Formatted Summary Message
 
 # ⚙ Tech Stack
 
-- **Backend**: Python 3.12, FastAPI, SQLAlchemy, Alembic, Celery
-- **AI Providers**: Groq LLaMA 3.1 & Vision LLMs (NLP & Receipt Processing), Groq Whisper (Voice to Text)
-- **Database & Cache**: PostgreSQL 16 (Permanent State), Redis (Deduplication, Lock, Queue)
-- **Deployment**: Docker, Docker Compose, Render Cloud Platform
+- **Backend**: Python 3.12, FastAPI, SQLAlchemy, Alembic
+- **AI Providers**: Groq & Vision LLMs (NLP & Receipt Processing), Groq Whisper (Voice to Text)
+- **Database & Cache**: PostgreSQL, Redis (Lock, Queue)
 
 ---
 

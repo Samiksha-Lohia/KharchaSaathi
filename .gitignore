@@ -156,3 +156,9 @@ cython_debug/
 # Node / Tunnel / Executables
 node_modules/
 cloudflared.exe
+
+# Antigravity & Project Planning Docs
+.antigravity/
+KharchaSaathi_Antigravity_Prompts.md
+KharchaSaathi_Project_Plan.pdf
+
